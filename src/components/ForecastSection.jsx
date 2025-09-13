@@ -4,32 +4,20 @@ import { Sun, CloudSun, CloudRain, Snowflake, Cloud } from "lucide-react";
 export default function ForecastSection() {
   const { weather } = useWeather();
 
+  // Show skeleton placeholders if no forecast yet
   if (!weather?.forecast) {
     return (
       <div className="grid grid-cols-4 gap-3">
-        {forecastDays.map((day, index) => {
-          const weekday = new Date(day.date).toLocaleDateString("en-US", {
-            weekday: "short",
-          });
-
-          return (
+        {Array(4)
+          .fill(null)
+          .map((_, index) => (
             <div
               key={index}
-              className="flex h-32 flex-col items-center justify-center gap-1 rounded-xl bg-white/10 px-4 py-3"
-            >
-              {/* Weather Icon */}
-              {getWeatherIcon(day.code)}
-
-              {/* Weekday */}
-              <span className="text-sm">{weekday}</span>
-
-              {/* Temperature */}
-              <span className="font-semibold">{Math.round(day.tempMax)}°C</span>
-            </div>
-          );
-        })}
+              className="flex h-32 animate-pulse flex-col items-center justify-center gap-1 rounded-xl bg-white/10 px-4 py-3"
+            />
+          ))}
       </div>
-    ); // No forecast data yet
+    );
   }
 
   const getWeatherIcon = (code) => {
