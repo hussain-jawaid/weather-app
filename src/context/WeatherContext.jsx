@@ -8,7 +8,7 @@ export const WeatherProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const API_KEY = ""; // replace with your Tomorrow.io key
-  const LOCATION = "karachi";
+  const LOCATION = "kuwait";
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -31,10 +31,9 @@ export const WeatherProvider = ({ children }) => {
         const currentData = realtimeRes.data.data.values;
         const current = {
           temperature: currentData.temperature,
-          humidity: currentData.humidity,
-          windSpeed: currentData.windSpeed,
-          precipitation: currentData.precipitationProbability,
           code: currentData.weatherCode,
+          city: realtimeRes.data.location.name, 
+          date: realtimeRes.data.data.time, 
         };
 
         // --- Parse forecast (Forecast API) ---
