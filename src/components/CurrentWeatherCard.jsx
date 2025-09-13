@@ -43,7 +43,7 @@ export default function CurrentWeatherCard() {
   };
 
   return (
-    <div className="flex w-83 h-106 flex-col gap-32 rounded-2xl bg-[#5364d3] px-6 pt-6 pb-14 text-white">
+    <div className="flex min-w-83 h-106 flex-col gap-32 rounded-2xl bg-[#5364d3] px-6 pt-6 pb-14 text-white">
       {/* Top Section: Date & Location */}
       <div>
         <h2 className="text-2xl">

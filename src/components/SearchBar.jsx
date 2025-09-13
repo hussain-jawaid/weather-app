@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import { Search } from "lucide-react";
+import { useWeather } from "../context/WeatherContext";
 
 function SearchBar() {
-  const [locationValue, setLocationValue] = useState(null);
+  const { setLocation } = useWeather();
+  const [locationValue, setLocationValue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(locationValue);
-    setLocationValue(null);
+    if (!locationValue.trim()) return;
+
+    setLocation(locationValue.trim().toLowerCase());
+    setLocationValue(""); // reset input
   };
 
   return (

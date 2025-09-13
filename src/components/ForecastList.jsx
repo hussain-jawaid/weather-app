@@ -9,21 +9,35 @@ export default function ForecastList() {
   const current = weather?.current;
   const precipitationRaw = current?.precipitation;
   const humidityRaw = current?.humidity;
-  const windRaw = current?.windSpeed;
+  const windRaw = current?.wind;
 
   // Friendly formatting helpers
   const formatPercent = (val) =>
     typeof val === "number" ? `${Math.round(val)}%` : "—";
-  const formatWind = (val) =>
-    typeof val === "number" ? `${Math.round(val)} km/h` : "—";
+
+  const toKmH = (val, unit = "m/s") => {
+    if (typeof val !== "number") return "—";
+
+    switch (unit) {
+      case "m/s":
+        return `${Math.round(val * 3.6)} km/h`;
+      case "mph":
+        return `${Math.round(val * 1.60934)} km/h`;
+      case "knots":
+        return `${Math.round(val * 1.852)} km/h`;
+      case "km/h":
+      default:
+        return `${Math.round(val)} km/h`;
+    }
+  };
 
   const precipitation = formatPercent(precipitationRaw);
   const humidity = formatPercent(humidityRaw);
-  const wind = formatWind(windRaw);
+  const wind = toKmH(windRaw, "m/s");
 
   if (loading) {
     return (
-      <div className="flex w-sm flex-col gap-6 rounded-br-2xl rounded-tr-2xl bg-[#1e293b] p-6 text-white shadow-lg">
+      <div className="flex w-sm flex-col gap-6 rounded-tr-2xl rounded-br-2xl bg-[#1e293b] p-6 text-white shadow-lg">
         <div className="flex flex-col gap-2 text-sm">
           <div className="flex justify-between">
             <span className="text-xl font-semibold">PRECIPITATION</span>
@@ -46,7 +60,7 @@ export default function ForecastList() {
   }
 
   return (
-    <div className="flex w-sm flex-col gap-6 rounded-br-2xl rounded-tr-2xl bg-[#1e293b] p-6 text-white shadow-lg">
+    <div className="flex h-96 w-sm flex-col gap-6 rounded-tr-2xl rounded-br-2xl bg-[#1e293b] p-6 text-white shadow-lg">
       {/* Weather Details */}
       <div className="flex flex-col gap-2 text-sm">
         <div className="flex justify-between">
