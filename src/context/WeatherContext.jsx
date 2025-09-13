@@ -8,7 +8,7 @@ export const WeatherProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   const API_KEY = ""; // replace with your Tomorrow.io key
-  const LOCATION = "kuwait";
+  const LOCATION = "karachi";
 
   useEffect(() => {
     const fetchWeather = async () => {
@@ -31,9 +31,16 @@ export const WeatherProvider = ({ children }) => {
         const currentData = realtimeRes.data.data.values;
         const current = {
           temperature: currentData.temperature,
+          humidity: currentData.humidity, // percent (eg. 42)
+          windSpeed: currentData.windSpeed, // numeric
+          // Tomorrow's API sometimes uses precipitationProbability — fallback to 0 if missing
+          precipitation:
+            currentData.precipitationProbability ??
+            currentData.precipitation ??
+            0,
           code: currentData.weatherCode,
-          city: realtimeRes.data.location.name, 
-          date: realtimeRes.data.data.time, 
+          city: realtimeRes.data.location?.name || LOCATION,
+          date: realtimeRes.data.data?.time || new Date().toISOString(),
         };
 
         // --- Parse forecast (Forecast API) ---
