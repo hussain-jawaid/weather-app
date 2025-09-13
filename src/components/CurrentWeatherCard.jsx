@@ -1,20 +1,25 @@
-import { useWeather } from "../context/WeatherContext";
+import { MapPin, Sun } from "lucide-react";
 
 export default function CurrentWeatherCard() {
-  const { weather, loading } = useWeather();
-
-  if (loading) return <p className="text-white">Loading...</p>;
-  if (!weather) return <p className="text-red-500">No data available</p>;
-
-  const { current } = weather;
-
   return (
-    <div className="rounded-2xl bg-gradient-to-br from-blue-400 to-purple-500 p-6 text-white">
-      <h2 className="text-xl font-bold">Current Weather</h2>
-      <p className="mt-2 text-4xl">{Math.round(current.temperature)}°C</p>
-      <p className="mt-1">Precipitation: {current.precipitation}%</p>
-      <p className="mt-1">Humidity: {current.humidity}%</p>
-      <p className="mt-1">Wind: {current.windSpeed} km/h</p>
+    <div className="flex w-sm flex-col gap-32 rounded-2xl bg-[#5364d3] px-6 pt-6 pb-16 text-white">
+      {/* Top Section: Date & Location */}
+      <div>
+        <h2 className="text-2xl">Tuesday</h2>
+        <p className="text-sm opacity-90">20 Jun 2022</p>
+
+        <div className="mt-2 flex items-center gap-1">
+          <MapPin className="h-4 w-4" />
+          <span className="">Biarritz, FR</span>
+        </div>
+      </div>
+
+      {/* Weather Info */}
+      <div className="flex flex-1 flex-col gap-2">
+        <Sun className="h-12 w-12" />
+        <p className="text-5xl">29°C</p>
+        <p className="text-lg">Sunny</p>
+      </div>
     </div>
   );
 }
