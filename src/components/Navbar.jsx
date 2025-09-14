@@ -10,7 +10,7 @@ function Navbar() {
         Weather.com
       </a>
       <div className="flex gap-4 text-white">
-        <a href="https://github.com/hussain-jawaid" className="">
+        <a href="https://github.com/hussain-jawaid/weather-app" className="">
           GitHub
         </a>
         <a href="#">Portfolio</a>
