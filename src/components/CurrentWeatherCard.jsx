@@ -13,7 +13,7 @@ export default function CurrentWeatherCard() {
 
   if (!weather?.current) {
     return (
-      <div className="flex w-80 h-106 flex-col items-center justify-center rounded-2xl bg-[#5364d3] p-6 text-white shadow-lg">
+      <div className="flex w-full flex-col items-center justify-center rounded-2xl bg-[#5364d3] py-8 text-white shadow-lg lg:h-106 lg:w-83">
         {/* Spinner */}
         <div className="h-10 w-10 animate-spin rounded-full border-4 border-white border-t-transparent"></div>
       </div>
@@ -43,7 +43,7 @@ export default function CurrentWeatherCard() {
   };
 
   return (
-    <div className="flex min-w-83 h-106 flex-col gap-32 rounded-2xl bg-[#5364d3] px-6 pt-6 pb-14 text-white">
+    <div className="flex w-full items-center gap-32 rounded-2xl bg-[#5364d3] px-6 pt-6 pb-14 text-white lg:h-106 lg:w-83 lg:flex-col lg:items-start">
       {/* Top Section: Date & Location */}
       <div>
         <h2 className="text-2xl">

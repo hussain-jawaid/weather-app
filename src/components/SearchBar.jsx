@@ -25,7 +25,7 @@ function SearchBar() {
       />
       <button
         type="submit"
-        className="cursor-pointer rounded-md bg-[#5364d3] px-4 transition-all duration-200 hover:scale-105"
+        className="cursor-pointer rounded-md bg-[#5364d3] text-white px-4 transition-all duration-200 hover:scale-105"
       >
         <Search className="h-5 w-5" />
       </button>

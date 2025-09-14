@@ -1,6 +1,15 @@
-export default function ForecastCard({ Icon, weekday, temperature }) {
+export default function ForecastCard({
+  Icon,
+  weekday,
+  temperature,
+  bgColor,
+  textColor,
+}) {
   return (
-    <div className="flex h-32 flex-col items-center justify-center gap-1 rounded-xl bg-white/10 px-4 py-3">
+    <div
+      className="flex h-32 flex-col items-center justify-center gap-1 rounded-xl px-4 py-3"
+      style={{ backgroundColor: `${bgColor}`, color: `${textColor}` }}
+    >
       {/* Weather Icon */}
       <Icon className="h-9 w-9" />
 

@@ -8,8 +8,8 @@ export default function ForecastSection() {
   // Show skeleton placeholders if no forecast yet
   if (!weather?.forecast) {
     return (
-      <div className="grid grid-cols-4 gap-3">
-        {Array(4) 
+      <div className="grid grid-cols-4 gap-1">
+        {Array(4)
           .fill(null)
           .map((_, index) => (
             <div
@@ -22,7 +22,7 @@ export default function ForecastSection() {
   }
 
   const getWeatherIcon = (code) => {
-    if ([1000].includes(code)) return <Sun className="h-9 w-9" />;
+    if ([1000].includes(code)) return Sun;
     if ([1100, 1101, 1102].includes(code)) return CloudSun;
     if ([4000, 4200, 4201].includes(code)) return CloudRain;
     if ([5000, 5100, 5101].includes(code)) return Snowflake;
@@ -33,28 +33,32 @@ export default function ForecastSection() {
   const forecastDays = weather.forecast.slice(0, 4);
 
   return (
-    <div className="grid grid-cols-4 gap-3">
+    <div className="grid grid-cols-4 gap-1">
       {forecastDays.map((day, index) => {
         const weekday = new Date(day.date).toLocaleDateString("en-US", {
           weekday: "short",
         });
+        let bgColor;
+        let textColor;
+
+        if (index === 0) {
+          bgColor = "white";
+          textColor = "black";
+        } else {
+          bgColor = "#101828";
+          textColor = "white";
+        }
 
         return (
           <>
-            <ForecastCard key={index} Icon={getWeatherIcon(day.code)} weekday={weekday} temperature={day.tempMax} />
-            <div
+            <ForecastCard
               key={index}
-              className="flex h-32 flex-col items-center justify-center gap-1 rounded-xl bg-white/10 px-4 py-3"
-            >
-              {/* Weather Icon */}
-              {getWeatherIcon(day.code)}
-
-              {/* Weekday */}
-              <span className="text-sm">{weekday}</span>
-
-              {/* Temperature */}
-              <span className="font-semibold">{Math.round(day.tempMax)}°C</span>
-            </div>
+              Icon={getWeatherIcon(day.code)}
+              weekday={weekday}
+              temperature={day.tempMax}
+              bgColor={bgColor}
+              textColor={textColor}
+            />
           </>
         );
       })}

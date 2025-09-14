@@ -60,9 +60,9 @@ export default function ForecastList() {
   }
 
   return (
-    <div className="flex h-96 w-sm flex-col gap-6 rounded-tr-2xl rounded-br-2xl bg-[#1e293b] p-6 text-white shadow-lg">
+    <div className="flex h-96 w-full flex-col gap-6 rounded-2xl bg-[#1e293b] p-6 shadow-lg lg:w-sm lg:rounded-none lg:rounded-tr-2xl lg:rounded-br-2xl">
       {/* Weather Details */}
-      <div className="flex flex-col gap-2 text-sm">
+      <div className="flex flex-col gap-2 text-sm text-white">
         <div className="flex justify-between">
           <span className="text-xl font-semibold">PRECIPITATION</span>
           <span className="text-lg">{precipitation}</span>
