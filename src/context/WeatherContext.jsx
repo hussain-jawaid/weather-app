@@ -8,7 +8,7 @@ export const WeatherProvider = ({ children }) => {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const [location, setLocation] = useState("toronto");
+  const [location, setLocation] = useState("");
   const API_KEY = apiKey;
 
   useEffect(() => {
@@ -58,9 +58,7 @@ export const WeatherProvider = ({ children }) => {
   }, [location]);
 
   return (
-    <WeatherContext.Provider
-      value={{ weather, loading, setLocation }}
-    >
+    <WeatherContext.Provider value={{ weather, loading, setLocation }}>
       {children}
     </WeatherContext.Provider>
   );

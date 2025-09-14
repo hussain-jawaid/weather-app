@@ -1,8 +1,10 @@
 import CurrentWeatherCard from "./components/CurrentWeatherCard";
 import ForecastList from "./components/ForecastList";
 import Navbar from "./components/Navbar";
+import useUserLocation from "./hooks/useUserLocation";
 
 function App() {
+  useUserLocation();
   return (
     <>
       <Navbar />
